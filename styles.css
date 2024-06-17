@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+
+#clapping{  
+    display: none;
+}
+#gif-box{
+    width: 30%;
+    margin: auto;
+    padding-top: 50px;
+}
+
+.centered{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+}
+
+#flex-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:center;
+    align-content: center;
+    gap:30px;
+    /* margin-top: 50px; */
+}
+
+#gif{
+    display: flex;
+    justify-content: center;
+    padding: 50px 0px;
+}
+
+#fixed-container{
+    display: flex;
+    justify-content:center;
+    align-content: center;
+    /* margin: 0px 300px; */
+    margin: auto;
+    max-width: 50%;
+    height: 16em;
+    /* height: 2em; */
+    overflow: hidden;
+    position: relative;
+    font-family: monospace;
+}
+
+#looping-text{
+    position: absolute;
+    bottom: 0;
+    white-space: pre-wrap;
+    overflow: hidden;
+    font-family: "Kalam";
+    font-weight: 400;
+    font-size: 1.2em;
+    display: inline;
+}
+
+#timer-area .text{
+    font-family: "Montserrat";
+    font-weight: 600;
+    font-size: 1em;
+}
+
+#timer-area{
+    padding: 0 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#timer{
+    font-family: "Montserrat";
+    font-weight: 800;
+    font-size: 2.5em;
+}
+
+.time-display{
+    margin-top: 0;
+}
+
+#stop{
+    width: 15%;
+    min-width: 190px;
+    height: 60px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    margin-top: 30px;
+    border-color: red;
+    background-color: crimson;
+    color: white;
+    font-size: 1em;
+}
