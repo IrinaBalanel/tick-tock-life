@@ -1,29 +1,37 @@
 window.onload = function (){
+
     var textHolder = "While reading this text, and as each word passes, your precious time ticks away. Each second you spend reading these lines, you're not just passing time, you're trading a moment of your life for words that loop endlessly. Words that serve no purpose but to remind you how every moment spent here is a moment you'll never recover. As you continue to read, ask yourself what you could be doing instead. Could it be something inspiring? Something productive, or joyous? Yet, here you remain, eyes gliding over each meaningless word, each sentence crafted to lead you right back to the start, ensuring you're well aware that this is time you will never get back. The irony, of course, is that by reading about how you're wasting time, you're embodying the very essence of wasting time. And still, the seconds turn to minutes. How many have passed already? Too many, just to read about the irretrievable nature of spent time. This loop of text is a mirror, reflecting not just a message, but a choice. Every loop you read through, every round of these words, is another tick of the clock, another piece of your life spent. So here you are, still reading, still wasting, as each word, each phrase pulls you deeper into the realization that life is short, and you're spending yours here, reading about how short life truly is.";
+    var firstInterac = document.getElementById("gif");
+    var loopingText = document.getElementById("looping-text");
+    var dramAudio = document.getElementById("audio-drama");
+    var happAudio = document.getElementById("audio-happy");
+    var stopBtn = document.getElementById("stop");
+
+    function playMusic(){
+        dramAudio.play();
+    }
+
+    firstInterac.onclick = playMusic;
 
     var apiKey = "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";
     var url = "https://api-inference.huggingface.co/models/gpt2";
-    // var url = "https://api.openai.com/v1/completions";
+
+
 
 
     function fetchGeneratedMessage() {
-        return fetch(url, {
+        fetch(url, {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + apiKey,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                inputs: "Generate a message about wasting time in life for a user to read and keep him engaged in reading."
-                // model: "text-davinci-003",
-                // prompt: "Generate a message about wasting time in life for a user to read and keep him engaged in reading.",
-                // max_tokens: 350,
-                // temperature: 0.9
+                inputs: "Generate me a message about wasting precious time in life to make a user read and keep him engaged on the website."
             })
         })
         .then(function(response) {
             if (response.ok) {
-
                 const result = response.json();
                 console.log(result);
                 return result;
@@ -34,23 +42,6 @@ window.onload = function (){
             }
         })
         .then(function(data) {
-            var loopingText = document.getElementById("looping-text");
-            var dramAudio = document.getElementById("audio-drama");
-            var happAudio = document.getElementById("audio-happy");
-            var stopBtn = document.getElementById("stop");
-            function pauseAudio(){
-                dramAudio.pause();
-                dramAudio.currentTime = 0;
-                happAudio.play();
-                stopBtn.style.display = "none";
-                document.getElementById("flex-container").style.display = "none";
-                document.getElementById("clapping").style.display = "block";
-                textHolder = "Good choice!"
-                loopingText.innerHTML = textHolder;
-            }//end of pausing audio file
-
-            stopBtn.onclick = pauseAudio;
-
             // Ensure correct data parsing
             if (data && data.length > 0 && data[0].generated_text) {
                 var i = 0;
@@ -79,11 +70,25 @@ window.onload = function (){
                 throw new Error('Unexpected response format');
 
             }
+            
         })
 
     } //end of API fetching function
 
     fetchGeneratedMessage();
+
+    function pauseAudio(){
+        dramAudio.pause();
+        dramAudio.currentTime = 0;
+        happAudio.play();
+        stopBtn.style.display = "none";
+        document.getElementById("flex-container").style.display = "none";
+        document.getElementById("clapping").style.display = "block";
+        textHolder = "Good choice!"
+        loopingText.innerHTML = textHolder;
+    }//end of pausing audio file
+
+    stopBtn.onclick = pauseAudio;
 
 
     //timer
